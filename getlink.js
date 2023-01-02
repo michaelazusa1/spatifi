@@ -1,6 +1,6 @@
 var qualityVideo = 0;
 
-export function init(videoId, quality) {
+function init(videoId, quality) {
   let clientName = "ANDROID";
   qualityVideo = parseInt(quality);
   if (qualityVideo === 0 || qualityVideo === 3) {
@@ -39,7 +39,7 @@ export function init(videoId, quality) {
   };
 }
 
-export function getVideoHTMLPage(data) {
+function getVideoHTMLPage(data) {
   let json = JSON.parse(data);
   if (qualityVideo === 0) {
     let hlsManifestUrl = json.streamingData.hlsManifestUrl;
@@ -102,7 +102,7 @@ export function getVideoHTMLPage(data) {
   };
 }
 
-export function getAudio(data) {
+function getAudio(data) {
   let array = data.split('#EXT-X-MEDIA:URI="');
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
