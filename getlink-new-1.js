@@ -1,4 +1,4 @@
-export function init(videoId) {
+function init(videoId) {
   let clientName = "ANDROID"; // or  IOS
   let data = {
     method: "post",
@@ -29,7 +29,7 @@ export function init(videoId) {
   };
 }
 
-export function getVideoHTMLPage(data) {
+function getVideoHTMLPage(data) {
   const videoQualities = [
     "tiny",
     "small",
