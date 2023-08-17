@@ -34,15 +34,25 @@ function init(videoId, quality) {
             "client": {
               "gl": "US",
               "hl": "en",
-              "androidSdkVersion": 31,
+              "androidSdkVersion": 30,
               "clientName": "ANDROID",
-              "clientVersion": "17.31.35"
+              "clientVersion": "17.31.35",
+              "userAgent": "com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip",
+               "timeZone": "UTC", 
+                "utcOffsetMinutes": 0
             }
           },
           "videoId": videoId,
           "contentCheckOk": true,
           "racyCheckOk": true,
-          "params": "8AEB"
+          "params": "CgIQBg==",
+          "playbackContext": 
+            {
+                "contentPlaybackContext": 
+                {
+                     "html5Preference": "HTML5_PREF_WANTS"
+               }
+            }
     }),
   };
   return {
