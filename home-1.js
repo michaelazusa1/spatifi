@@ -19,7 +19,7 @@ function init(t, e) {
     }
   );
 }
-​
+
 function getHomeHTMLPage(t) {
   return {
     data: getSearchJson(
@@ -34,7 +34,7 @@ function getHomeHTMLPage(t) {
     ),
   };
 }
-​
+
 function findJSON(t, e, n, r, o, i) {
   let s = between(n, r, o);
   if (!s) throw Error(`Could not find ${e} in ${t}`);
@@ -78,7 +78,7 @@ const cutAfterJSON = (t) => {
   throw Error("Can't cut unsupported JSON (no matching closing bracket found)");
 };
 const jsonClosingChars = /^[)\]}'\s]+/;
-​
+
 function parseJSON(t, e, n) {
   if (!n || "object" == typeof n) return n;
   try {
@@ -87,14 +87,14 @@ function parseJSON(t, e, n) {
     throw Error(`Error parsing ${e} in ${t}: ${n.message}`);
   }
 }
-​
+
 function getSearchJson(t) {
   return tojson(
     t.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content
       .sectionListRenderer.contents
   );
 }
-​
+
 function tojson(t) {
   try {
     const e = t
@@ -114,7 +114,7 @@ function tojson(t) {
     return [];
   }
 }
-​
+
 function toPlaylist(t) {
   try {
     return t
