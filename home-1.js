@@ -16,7 +16,7 @@ function init(t, e) {
 
 function getHomeHTMLPage(t) {
     return {
-        data: getSearchJson(findJSON("topHome.html", "HOME_response", t, /\bytInitialData\s*=\s*{/, "<\/script>", "{"))
+        data: getSearchJson(findJSON("topHome.html", "HOME_response", t, /\bytInitialData\s*=\s*{/, "\/script", "{"))
     }
 }
 
