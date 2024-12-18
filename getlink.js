@@ -1,13 +1,9 @@
-
 var qualityVideo = 0;
 
 function init(videoId, quality) {
-  let clientName = 'ANDROID_MUSIC';
+  let clientName = 'ANDROID_VR';
 
   qualityVideo = parseInt(quality);
-  if (qualityVideo === 0 || qualityVideo === 3) {
-    clientName = 'IOS_MUSIC';
-  }
 
   let data = {
     method: 'post',
@@ -26,7 +22,7 @@ function init(videoId, quality) {
                 gl: 'US',
                 clientName: clientName,
                 hl: 'en',
-                clientVersion: '5.16.51',
+                clientVersion: '1.56.21',
               },
             },
             videoId: videoId,
@@ -66,65 +62,10 @@ function init(videoId, quality) {
 
 function getVideoHTMLPage(data) {
   let json = JSON.parse(data);
-  if (qualityVideo === 0) {
-    let hlsManifestUrl = json.streamingData.hlsManifestUrl;
-    return {
-      data: {
-        url: hlsManifestUrl,
-      },
-    };
-  }
-  if (qualityVideo === 3) {
-    let hlsManifestUrl = json.streamingData.hlsManifestUrl;
-    if (hlsManifestUrl) {
-      return {
-        data: {
-          method: 'get',
-          url: hlsManifestUrl,
-          headers: {
-            'User-Agent':
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
-            Host: 'www.youtube.com',
-            'content-type': 'application/json',
-          },
-        },
-        function: 'getAudio',
-      };
-    }
-  }
-
-  //console.log(JSON.stringify(json));
-
-  let adaptiveFormats = json.streamingData.formats;
-
-  let url = '';
-  let dic = {};
-  adaptiveFormats.forEach((element) => {
-    dic[element.itag] = element.url;
-  });
-  if (qualityVideo === 1) {
-    url = dic['22'];
-    if (!url) {
-      url = dic['18'];
-    }
-    if (!url) {
-      url = dic['17'];
-    }
-  }
-
-  if (qualityVideo === 2) {
-    url = dic['18'];
-    if (!url) {
-      url = dic['17'];
-    }
-    if (!url) {
-      url = dic['22'];
-    }
-  }
-
+  const url = json.streamingData.formats[0].url;
   return {
     data: {
-      url: url,
+      url,
     },
   };
 }
